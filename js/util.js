@@ -3,31 +3,31 @@
 var nebulas = require("nebulas"),
 Account = nebulas.Account,
 neb = new nebulas.Neb();
-neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
-//neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
+//neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
 
 var NebPay = require("nebpay");
 var nebPay = new NebPay();
 var serialNumber;
-var intervalQuery; //¶¨Ê±²éÑ¯½»Ò×½á¹û
-//var callbackUrl = NebPay.config.mainnetUrl;
-var callbackUrl = NebPay.config.testnetUrl;
-var dappAddress='n1q6Kj3hoavidXxQPfdipypJsszSF9tBp6w';
+var intervalQuery; //å®šæ—¶æŸ¥è¯¢äº¤æ˜“ç»“æœ
+var callbackUrl = NebPay.config.mainnetUrl;
+//var callbackUrl = NebPay.config.testnetUrl;
+var dappAddress='n1kPHa3uKAma6Jfy97dUwnc8NcCoQHXP8qu';
 //var dappAddress='n1yVhTWxtbansHCudqpNxEkHviVDLGUjbvA';
 var myaccount;
 var curMsgPage=1;
 var clock;
 var myCountDownNum=0
-//²éÑ¯ĞÅÏ¢
+//æŸ¥è¯¢ä¿¡æ¯
 function Refresh(address,dappFun,args,fun){
 	neb.api.call(address,dappAddress,"0","0","1000000","2000000",{"function": dappFun,"args": JSON.stringify(args)}).then(function (res) {
         //$.bootstrapLoading.end();
         if(res=='stream terminated by RST_STREAM with error code: REFUSED_STREAM'){
-      	  //mui.toast('ÍøÂçÁ¬½ÓÊ§°Ü£¡');
+      	  //mui.toast('ç½‘ç»œè¿æ¥å¤±è´¥ï¼');
             return;
         }
         if(res.result == '' && res.execute_err == 'contract check failed') {
-      	  //mui.toast('ºÏÔ¼¼ì²âÊ§°Ü£¬Çë¼ì²éä¯ÀÀÆ÷Ç®°ü²å¼ş»·¾³£¡');
+      	  //mui.toast('åˆçº¦æ£€æµ‹å¤±è´¥ï¼Œè¯·æ£€æŸ¥æµè§ˆå™¨é’±åŒ…æ’ä»¶ç¯å¢ƒï¼');
             return;
         }
         var info = JSON.parse(res.result);
@@ -39,22 +39,22 @@ function Refresh(address,dappFun,args,fun){
         //$.bootstrapLoading.end();
     });
 }
-//Ë¢ĞÂ½»Ò×
+//åˆ·æ–°äº¤æ˜“
 function funcIntervalQuery(callbackfun) {   
     nebPay.queryPayInfo(serialNumber)  
         .then(function (resp) {
             var respObject = JSON.parse(resp)
-            //code==0½»Ò×·¢ËÍ³É¹¦, status==1½»Ò×ÒÑ±»´ò°üÉÏÁ´
+            //code==0äº¤æ˜“å‘é€æˆåŠŸ, status==1äº¤æ˜“å·²è¢«æ‰“åŒ…ä¸Šé“¾
             if(respObject.code === 0 && respObject.data.status === 1){                    
-                //½»Ò×³É¹¦,´¦ÀíºóĞøÈÎÎñ....
-                clearInterval(intervalQuery)    //Çå³ı¶¨Ê±²éÑ¯
+                //äº¤æ˜“æˆåŠŸ,å¤„ç†åç»­ä»»åŠ¡....
+                clearInterval(intervalQuery)    //æ¸…é™¤å®šæ—¶æŸ¥è¯¢
                 //$.bootstrapLoading.end();
                 if(callbackfun){
                 	callbackfun();
                 	Modal.alert({title:'Warning',isShowNasCount:false,msg:'Successful operation !'});
             	}
             }else if(respObject.code === 0 && respObject.data.status === 0){
-            	clearInterval(intervalQuery)    //Çå³ı¶¨Ê±²éÑ¯
+            	clearInterval(intervalQuery)    //æ¸…é™¤å®šæ—¶æŸ¥è¯¢
             	switch (respObject.data.execute_result) {
 				case 'Error: errorCode:1':
 					Modal.alert({title:'Warning',isShowNasCount:false,msg:'Operation failed ! Suspension service. '});
@@ -87,7 +87,7 @@ function funcIntervalQuery(callbackfun) {
         	//$.bootstrapLoading.end();
         });
 }
-//µ¹¼ÆÊ±
+//å€’è®¡æ—¶
 function myCountDown(){
 	myCountDownNum++;
 	clock.setValue(60-myCountDownNum);
@@ -96,13 +96,13 @@ function myCountDown(){
 		myCountDownNum=0;
 	}
 }
-//¶ÁÈ¡ÕËºÅ
+//è¯»å–è´¦å·
 function loadAccount(){
 	nebPay.simulateCall(dappAddress, "0", "getAccount", "", {    
 	      listener: function(cb){
 	    	  if(cb=='error: please import wallet file'){
-	    			serialNumber = nebPay.call(dappAddress, 0, "xxxxxxxx", "[]", {    //Ê¹ÓÃnebpayµÄcall½Ó¿ÚÈ¥µ÷ÓÃºÏÔ¼,
-	    	            listener: null        //ÉèÖÃlistener, ´¦Àí½»Ò×·µ»ØĞÅÏ¢
+	    			serialNumber = nebPay.call(dappAddress, 0, "xxxxxxxx", "[]", {    //ä½¿ç”¨nebpayçš„callæ¥å£å»è°ƒç”¨åˆçº¦,
+	    	            listener: null        //è®¾ç½®listener, å¤„ç†äº¤æ˜“è¿”å›ä¿¡æ¯
 	    	        });
 	    			return;
 	    		}
@@ -112,7 +112,7 @@ function loadAccount(){
 	      }
 	   });
 }
-//¼ÓÔØÏûÏ¢
+//åŠ è½½æ¶ˆæ¯
 function loadMsg(num){
 	curMsgPage+=num;
 	if(curMsgPage<1){
@@ -132,7 +132,7 @@ function loadMsg(num){
 					isborder='style="border-bottom:none;"';
 				}
 				switch (data[i].type) {
-				case 1://1Âò×À×Ó 2Âô×À×Ó 3Ôö¼Ó×À×Ó¼ÛÖµ 4¼õÉÙ×À×Ó¼ÛÖµ 5Íæ
+				case 1://1ä¹°æ¡Œå­ 2å–æ¡Œå­ 3å¢åŠ æ¡Œå­ä»·å€¼ 4å‡å°‘æ¡Œå­ä»·å€¼ 5ç©
 					tmpHtml+='<p class="card-text" '+isborder+' >No.'+data[i].tableIndex+' table : Buy Table , Cost : '+data[i].money+' Nas , Date : '+new Date(data[i].updateDate).Format('yyyy-MM-dd hh:mm:ss')+isFirst+'</p>'
 					break;
 				case 2:
@@ -237,13 +237,13 @@ function returnTypeText(type){
 }
 Date.prototype.Format = function (fmt) { //author: meizz 
     var o = {
-        "M+": this.getMonth() + 1, //ÔÂ·İ 
-        "d+": this.getDate(), //ÈÕ 
-        "h+": this.getHours(), //Ğ¡Ê± 
-        "m+": this.getMinutes(), //·Ö 
-        "s+": this.getSeconds(), //Ãë 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //¼¾¶È 
-        "S": this.getMilliseconds() //ºÁÃë 
+        "M+": this.getMonth() + 1, //æœˆä»½ 
+        "d+": this.getDate(), //æ—¥ 
+        "h+": this.getHours(), //å°æ—¶ 
+        "m+": this.getMinutes(), //åˆ† 
+        "s+": this.getSeconds(), //ç§’ 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //å­£åº¦ 
+        "S": this.getMilliseconds() //æ¯«ç§’ 
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
@@ -257,7 +257,7 @@ $(function () {
 	    var ahtml = alr.html();
 
 	    var _alert = function (options) {
-	      alr.html(ahtml);    // ¸´Ô­
+	      alr.html(ahtml);    // å¤åŸ
 	      alr.find('.ok').removeClass('btn-success').addClass('btn-primary');
 	      alr.find('.cancel').hide();
 	      _dialog(options);
@@ -272,7 +272,7 @@ $(function () {
 	    };
 
 	    var _confirm = function (options) {
-	      alr.html(ahtml); // ¸´Ô­
+	      alr.html(ahtml); // å¤åŸ
 	      alr.find('.ok').removeClass('btn-primary').addClass('btn-success');
 	      alr.find('.cancel').show();
 	      _dialog(options);
