@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-cmn">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/flipclock.css">
+    <link rel="stylesheet" href="bootstrap.min.css" >
+    <link rel="stylesheet" href="loaders.min.css" >
+    <link rel="stylesheet" href="css/index.css" >
+	<link rel="shortcut icon" href="img/index/logo.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/index/logo.png">
+	<style type="text/css">
+		button img {
+			width: 30px;
+			margin-right: 5px;
+		}
+		button span img {
+			margin-right: 0px;
+			margin-bottom: 10px;
+		}
+		p img{
+			width: 30px;
+		}
+		h3,h4,h5{
+			margin-bottom: 0px;
+		}
+		#message p{
+			border-bottom: 1px solid #d5d9dc;
+			padding-bottom:20px;
+		}
+		#historical p{
+			border-bottom: 1px solid #d5d9dc;
+			padding-bottom:20px;
+		}
+	</style>
+    <title>LuckTable</title>
+  </head>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">LuckTable<span id="accountSpan"></span></h5>
+      
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a id="noHavePlus" style="display: none;"  data-toggle="tooltip" data-placement="top" data-original-title="请使用谷歌浏览器、并安装星云钱包插件"  class="p-2 badge badge-danger" target="_blank"  href="https://github.com/ChengOrangeJu/WebExtensionWallet">未安装插件</a>
+        <span id="account" style="display: none;"></span>
+        <a id="myaccount" data-toggle="tooltip" data-placement="top" data-original-title="点此呼出星云钱包,可登陆钱包、更换钱包。解锁后即可，这里不用点击生成交易。" class="p-2 badge badge-info" target="_blank"  href='javascript:nebPay.call(dappAddress, 0, "xxxxxxxx", "[]", { listener: null    });' >Wallet</a>
+        <a class="p-2 text-dark" href="index.html">Home</a>
+        <a class="p-2 text-dark " href="help.html">Help</a>
+      </nav>
+    </div>
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		
+      <h3 class="display-4" id="title">Play</h3>
+      <p class="lead" id="text"></p>
+      <p class="lead" style="margin-bottom: -25px;">Next Time Load Info : </p>
+      <div style="text-align: center;display: -webkit-inline-box;">
+	      <div class="clock" style="margin:2em;"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center" id="dataDiv">
+      	<div class="col-md-12" style="margin-bottom:20px;">
+      		<table style="width: 938px;">
+      			<tr><td rowspan="3"><button style="height: 256px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(1)"><h3>Small</h3><h3>4-10</h3>Except the three ones are the same.<br/><h5>1:1</h5>code=1</button></td><td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(801)"><img src="img/sz_01.png"/><img src="img/sz_01.png"/><img src="img/sz_01.png"/><br/><h5>1:200</h5>code=801</button></td>
+      			
+      			<td rowspan="3"><button style="height: 256px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(3)"><span><img src="img/sz_01.png"/><img src="img/sz_01.png"/><img src="img/sz_01.png"/></span>&nbsp;&nbsp;<span><img src="img/sz_04.png"/><img src="img/sz_04.png"/><img src="img/sz_04.png"/></span><br/><span><img src="img/sz_02.png"/><img src="img/sz_02.png"/><img src="img/sz_02.png"/></span>&nbsp;&nbsp;<span><img src="img/sz_05.png"/><img src="img/sz_05.png"/><img src="img/sz_05.png"/></span><br/><span><img src="img/sz_03.png"/><img src="img/sz_03.png"/><img src="img/sz_03.png"/></span>&nbsp;&nbsp;<span><img src="img/sz_06.png"/><img src="img/sz_06.png"/><img src="img/sz_06.png"/></span><br/><h5>1:33</h5>code=3</button></td>
+      			<td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(804)"><img src="img/sz_04.png"/><img src="img/sz_04.png"/><img src="img/sz_04.png"/><br/><h5>1:200</h5>code=804</button></td><td rowspan="3"><button  style="height: 256px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(2)"><h3>Big</h3><h3>11-17</h3>Except the three ones are the same.<br/><h5>1:1</h5>code=2</button></td></tr>
+      			<tr><td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(802)"><img src="img/sz_02.png"/><img src="img/sz_02.png"/><img src="img/sz_02.png"/><br/><h5>1:200</h5>code=802</button></td><td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(805)"><img src="img/sz_05.png"/><img src="img/sz_05.png"/><img src="img/sz_05.png"/><br/><h5>1:200</h5>code=805</button></td></tr>
+      			<tr><td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(803)"><img src="img/sz_03.png"/><img src="img/sz_03.png"/><img src="img/sz_03.png"/><br/><h5>1:200</h5>code=803</button></td><td><button  type="button" class="btn btn-sm btn-outline-secondary" onclick="play(806)"><img src="img/sz_06.png"/><img src="img/sz_06.png"/><img src="img/sz_06.png"/><br/><h5>1:200</h5>code=806</button></td></tr>
+      		</table>
+      		<table style="width: 938px;">
+      			<tr>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(4)"><h3>4</h3><h5>1:60</h5>code=4</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(5)"><h3>5</h3><h5>1:30</h5>code=5</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(6)"><h3>6</h3><h5>1:17</h5>code=6</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(7)"><h3>7</h3><h5>1:12</h5>code=7</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(8)"><h3>8</h3><h5>1:8</h5>code=8</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(9)"><h3>9</h3><h5>1:6</h5>code=9</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(10)"><h3>10</h3><h5>1:6</h5>code=10</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(11)"><h3>11</h3><h5>1:6</h5>code=11</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(12)"><h3>12</h3><h5>1:6</h5>code=12</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(13)"><h3>13</h3><h5>1:8</h5>code=13</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(14)"><h3>14</h3><h5>1:12</h5>code=14</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(15)"><h3>15</h3><h5>1:17</h5>code=15</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(16)"><h3>16</h3><h5>1:30</h5>code=16</button></td>
+      				<td><button style="width:65px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(17)"><h3>17</h3><h5>1:60</h5>code=17</button></td>
+      			</tr>
+      		</table>
+      		<table style="width: 938px;">
+      			<tr>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(101)"><img src="img/sz_01.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=101</button></td>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(102)"><img src="img/sz_02.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=102</button></td>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(103)"><img src="img/sz_03.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=103</button></td>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(104)"><img src="img/sz_04.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=104</button></td>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(105)"><img src="img/sz_05.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=105</button></td>
+      				<td><button style="width:153px;" type="button" class="btn btn-sm btn-outline-secondary" onclick="play(106)"><img src="img/sz_06.png"/><h5>Once 1:1</h5><h5>Two times 1:2</h5><h5>Three times 1:6</h5>code=106</button></td>
+      			</tr>
+      		</table>
+      		
+      		<br/>
+      		<br/>
+      		<div class="col-md-12" style="margin-bottom:20px;width: 938px;">
+	      		<div class="card mb-12 box-shadow">
+	      			<div class="card-body" >
+	      				<h3 class="card-title pricing-card-title">This Table Historical records</h3>
+	      				<div id="historical" style="text-align: left;">
+		      				<p class="card-text" style="border-bottom:none;" >None</p>
+	      				</div>
+	      			</div>
+	      		</div>
+	      	</div>
+	      	<br/>
+      		<br/>
+      		<div class="col-md-12" style="margin-bottom:20px;width: 938px;">
+	      		<div class="card mb-12 box-shadow">
+	      			<div class="card-body" >
+	      				<h3 class="card-title pricing-card-title">My Message</h3>
+	      				<div id="message" style="text-align: left;">
+		      				<p class="card-text" style="border-bottom:none;" >None</p>
+	      				</div>
+	      				<br/>
+	      				<nav aria-label="Page navigation example">
+						  <ul class="pagination justify-content-center">
+						    <li class="page-item"><a class="page-link" href="javacript:void(0);" onclick="loadMsg(-1)"><</a></li>
+						    <li class="page-item disabled" ><a class="page-link" href="#" id="curMsgPage">1</a></li>
+						    <li class="page-item" ><a class="page-link" href="javacript:void(0);" onclick="loadMsg(1)">></a></li>
+						  </ul>
+						</nav>
+	      			</div>
+	      		</div>
+	      	</div>
+      	</div>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mb-3 text-muted" style="text-align:  center;">&copy; 2017-2018</small>
+          </div>
+        </div>
+      </footer>
+    </div>
+    </div>
+    
+<!-- system modal start -->
+    <div id="ycf-alert" class="modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          </div>
+          <div class="modal-body">
+          	<form id="nasCountFrom">
+	          	<div class="form-group">
+				  	<!-- <button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(1000)">1000Nas</button> -->
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(100)">100Nas</button>
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(10)">10Nas</button>
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(1)">1Nas</button>
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(0.1)">0.1Nas</button>
+	          	</div>
+	          	<div class="form-group">
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(0.01)">0.01Nas</button>
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(0.001)">0.001Nas</button>
+				  	<button  type="button" class="btn btn-sm btn-outline-secondary" onclick="hand(0.0001)">0.0001Nas</button>
+	          	</div>
+			  <div class="form-group">
+			    <input type="email" class="form-control" id="nasCount" placeholder="Enter Nas Count">
+			  </div>
+			</form>
+            <p>[Message]</p>
+          </div>
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- system modal end -->
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery.slim.min.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script>
+    <script src="js/nebPay.min.js"></script>
+	<script src="js/nebulas.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/flipclock.js"></script>
+    <script type="text/javascript">
+    var index;
+    var tableData;
+    
+    	$(document).ready(function(){
+    		clock = new FlipClock($('.clock'), 60, {
+				clockFace: 'Counter'
+			});
+    		if(typeof(webExtensionWallet) === "undefined"){
+    			$('#noHavePlus').show();
+    			$('#account').hide();
+    		}else{
+    			loadAccount();
+    		}
+    		index=window.location.hash.substring(1,2);
+    		$('#title').html('Play at the No.'+index+' table');
+    		
+    		loadData();
+    		window.setInterval("myCountDown()",1000); 
+    	});
+    	//加载数据
+    	function loadData(){
+    		Refresh(Account.NewAccount().getAddressString(),"getTableArrInfoByIndex",[index],function(data){
+    			tableData=data;
+    			var showCash=data.cash;
+    			var stateStr=data.ownerAddress;
+    			if(myaccount==data.ownerAddress){
+    				stateStr+=' <font color="red">(Belong to you)</font>';
+    			}
+    			stateStr+='<br/>CurrentState : <font color="green"><strong>Open</strong></font>';
+    			if(tableData.ownerAddress==undefined||tableData.ownerAddress==''){
+    				showCash='0';
+    				stateStr='None<br/>CurrentState : <font color="red"><strong>Close</strong></font>';
+    			}
+    			$('#text').html('You can bet that you can get up to '+showCash+' Nas.<br/>Table Owner : '+stateStr);
+    			
+    			var tmpHtml='';
+    			for(var i=0;i<data.playArr.length;i++){
+    				var isWin='';
+    				if(data.playArr[i].winMoney==0){
+    					isWin='&nbsp;&nbsp;<font size="3" color="green">Lose</font>&nbsp;&nbsp;code='+returnGameType(data.playArr[i].gameType)+'&nbsp;&nbsp;'+data.playArr[i].fromAddress;
+    				}else{
+    					isWin='&nbsp;&nbsp;<font size="3" color="red">Win&nbsp;</font>&nbsp;&nbsp;code='+returnGameType(data.playArr[i].gameType)+'&nbsp;&nbsp;'+data.playArr[i].fromAddress;
+    				}
+    				if(i==0){
+    					isWin+='&nbsp;&nbsp;<span class="badge badge-info">New</span>';
+    				}
+    				var isborder='';
+    				if(i==data.playArr.length-1){
+    					isborder='style="border-bottom:none;"';
+    				}
+	    			tmpHtml+='<p class="card-text" '+isborder+' ><img src="img/sz_0'+data.playArr[i].a1+'.png">&nbsp;&nbsp;<img src="img/sz_0'+data.playArr[i].a2+'.png">&nbsp;&nbsp;<img src="img/sz_0'+data.playArr[i].a3+'.png">'+isWin+'</p>';   				
+    			}
+    			if(tmpHtml==''){
+    				tmpHtml='None';
+    			}
+    			$('#historical').html(tmpHtml);
+    		});
+    		loadMsg(0);
+    	}
+    	
+    	function hand(money){
+    		$('#nasCount').val(money);
+    	}
+    	//play
+    	function play(type){
+    		if(tableData.ownerAddress==undefined||tableData.ownerAddress==''){
+    			Modal.alert({title:'Warning',isShowNasCount:false,msg:'This table has no owner. <br/>So you can\'t play at this table. '});
+    			return;
+			}
+    		Modal.confirm(
+    				  {title:'Play',isShowNasCount:true,msg: 'Your choice is '+returnTypeText(type)+'(code='+type+')<br/>You can only get up to '+tableData.cash+' Nas.<br/>Are you sure you want to play?'})
+    				  .on( function (e) {
+    				    if(e==true){
+    				    	var cashCount=$('#nasCount').val();
+    				    	if(isNaN(cashCount)){
+    			    			alert('Please fill in the amount correctly.');
+    			    			return;
+    			    		}
+    			    		if(cashCount<0.0001){
+    			    			alert('The amount should be more than 0.0001 Nas!');
+    			    			return;
+    			    		}
+    			    		if(cashCount>1000000000000){
+    			    			alert('The amount should be less than 1000000000000 Nas!');
+    			    			return;
+    			    		}
+    				    	serialNumber = nebPay.call(dappAddress, cashCount, "play", JSON.stringify([index,type]), {
+    				            qrcode: {
+    				                showQRCode: true
+    				            },
+    				            callback:callbackUrl
+    				        });
+    						
+    						//设置定时查询交易结果
+    				        intervalQuery = setInterval(function() {
+    				            funcIntervalQuery(function(){
+    				            	loadData();
+    				            });
+    				        }, 5000);
+    				    }
+    				  });
+    	}
+    	
+    	
+    </script>
+    
+    
+  </body>
+</html>
