@@ -222,7 +222,7 @@
     		if(data.ownerAddress==undefined||data.ownerAddress==''){
     			return 'This table has no owner. <br/>So you can\'t play at this table. <br/>You can buy this table become banker for '+data.cash+' Nas.';
     		}else{
-    			return 'You can play at this table and win up to '+data.cash+'Nas. <br/>You can buy this table become banker for '+data.cash*1.5+'('+data.cash+'x1.5) Nas.';
+    			return 'You can play at this table and win up to '+data.cash+'Nas. <br/>You can buy this table become banker for '+data.cash*10000*1.5/10000+'('+data.cash+'x1.5) Nas.';
     		}
     	}
     	function showCash(data){
@@ -250,7 +250,7 @@
     		if(data.ownerAddress==undefined||data.ownerAddress==''){
     			return data.cash;
     		}else{
-    			return data.cash*1.5;
+    			return data.cash*10000*1.5/10000;
     		}
     	}
     	function play(index){
