@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-cmn">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/flipclock.css">
+    <link rel="stylesheet" href="bootstrap.min.css" >
+    <link rel="stylesheet" href="loaders.min.css" >
+    <link rel="stylesheet" href="css/index.css" >
+	<link rel="shortcut icon" href="img/index/logo.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/index/logo.png">
+    <title>LuckTable</title>
+    <style type="text/css">
+    	p img{
+			width: 30px;
+		}
+		#message p{
+			border-bottom: 1px solid #d5d9dc;
+			padding-bottom:20px;
+		}
+    </style>
+  </head>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">LuckTable<span id="accountSpan"></span></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a id="noHavePlus" style="display: none;"  data-toggle="tooltip" data-placement="top" data-original-title="请使用谷歌浏览器、并安装星云钱包插件"  class="p-2 badge badge-danger" target="_blank"  href="https://github.com/ChengOrangeJu/WebExtensionWallet">未安装插件</a>
+        <span id="account" style="display: none;"></span>
+        <a id="myaccount" data-toggle="tooltip" data-placement="top" data-original-title="点此呼出星云钱包,可登陆钱包、更换钱包。解锁后即可，这里不用点击生成交易。" class="p-2 badge badge-info" target="_blank"  href='javascript:nebPay.call(dappAddress, 0, "xxxxxxxx", "[]", { listener: null    });' >Wallet</a>
+        <a class="p-2 text-dark alert alert-secondary" href="index.html">Home</a>
+        <a class="p-2 text-dark " href="help.html">Help</a>
+      </nav>
+    </div>
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h3 class="display-4">Tables</h3>
+      <p class="lead">Buy a table Or Choosing a table to play</p>
+      <p class="lead" style="margin-bottom: -25px;">Next Time Load Info : </p>
+      <div style="text-align: center;display: -webkit-inline-box;">
+	      <div class="clock" style="margin:2em;"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center" id="dataDiv">
+      	<div class="col-md-12" style="margin-bottom:20px;">
+      		<div class="card mb-12 box-shadow">
+      			<div class="card-body" >
+      				<h3 class="card-title pricing-card-title">Table <a class="badge badge-pill badge-secondary" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" data-original-title="table index is no.1">No.1</a>&nbsp;&nbsp;<span id="cash0">1</span> <small class="text-muted">Nas</small></h3>
+      				<p class="card-text" id="owner0">Owner : None</p>
+      				<p class="card-text" id="need0"></p>
+      				
+      				<div class="d-flex justify-content-between align-items-center">
+      					<div class="btn-group">
+      						<button id="buyBtn1" type="button" class="btn btn-sm btn-outline-primary" onclick="buy(1)">Buy</button>
+      						<button id="addCashBtn1" type="button" class="btn btn-sm btn-outline-primary" onclick="addCash(1)">AddCash</button>
+      						<button id="subCashBtn1" type="button" class="btn btn-sm btn-outline-primary" onclick="subCash(1)">SubCash</button>
+      						<button id="playBtn1" type="button" class="btn btn-sm btn-outline-primary" onclick="play(1)">Play</button>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      	<div class="col-md-12" style="margin-bottom:20px;">
+      		<div class="card mb-12 box-shadow">
+      			<div class="card-body" >
+      				<h3 class="card-title pricing-card-title">Table <a class="badge badge-pill badge-secondary" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" data-original-title="table index is no.1">No.2</a>&nbsp;&nbsp;<span id="cash1">1</span> <small class="text-muted">Nas</small></h3>
+      				<p class="card-text" id="owner1">Owner : None</p>
+      				<p class="card-text" id="need1"></p>
+      				<div class="d-flex justify-content-between align-items-center">
+      					<div class="btn-group">
+      						<button id="buyBtn2" type="button" class="btn btn-sm btn-outline-primary" onclick="buy(2)">Buy</button>
+      						<button id="addCashBtn2" type="button" class="btn btn-sm btn-outline-primary" onclick="addCash(2)">AddCash</button>
+      						<button id="subCashBtn2" type="button" class="btn btn-sm btn-outline-primary" onclick="subCash(2)">SubCash</button>
+      						<button id="playBtn2" type="button" class="btn btn-sm btn-outline-primary" onclick="play(2)">Play</button>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      	<div class="col-md-12" style="margin-bottom:20px;">
+      		<div class="card mb-12 box-shadow">
+      			<div class="card-body" >
+      				<h3 class="card-title pricing-card-title">Table <a class="badge badge-pill badge-secondary" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" data-original-title="table index is no.1">No.3</a>&nbsp;&nbsp;<span id="cash2">1</span> <small class="text-muted">Nas</small></h3>
+      				<p class="card-text" id="owner2">Owner : None</p>
+      				<p class="card-text" id="need2"></p>
+      				<div class="d-flex justify-content-between align-items-center">
+      					<div class="btn-group">
+      						<button id="buyBtn3" type="button" class="btn btn-sm btn-outline-primary" onclick="buy(3)">Buy</button>
+      						<button id="addCashBtn3" type="button" class="btn btn-sm btn-outline-primary" onclick="addCash(3)">AddCash</button>
+      						<button id="subCashBtn3" type="button" class="btn btn-sm btn-outline-primary" onclick="subCash(3)">SubCash</button>
+      						<button id="playBtn3" type="button" class="btn btn-sm btn-outline-primary" onclick="play(3)">Play</button>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      		<br/>
+      		<br/>
+      		<div class="col-md-12" style="margin-bottom:20px;width: 938px;">
+	      		<div class="card mb-12 box-shadow">
+	      			<div class="card-body" >
+	      				<h3 class="card-title pricing-card-title">My Message</h3>
+	      				<!-- 
+	      				<div class="form-group">
+					    	<input type="email" class="form-control" id="nasCount" placeholder="Enter Nas Wallet Address">
+					    	<button id="chg" type="button" class="btn btn-sm btn-outline-secondary" onclick="chg()">Change</button>
+					  	</div> -->
+	      				<div id="message" style="text-align: left;">
+		      				<p class="card-text" style="border-bottom:none;">None</p>
+	      				</div>
+	      				<br/>
+	      				<nav aria-label="Page navigation example">
+						  <ul class="pagination justify-content-center">
+						    <li class="page-item"><a class="page-link" href="javacript:void(0);" onclick="loadMsg(-1)"><</a></li>
+						    <li class="page-item disabled" ><a class="page-link" href="#" id="curMsgPage">1</a></li>
+						    <li class="page-item" ><a class="page-link" href="javacript:void(0);" onclick="loadMsg(1)">></a></li>
+						  </ul>
+						</nav>
+	      			</div>
+	      		</div>
+	      	</div>
+      </div>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mb-3 text-muted" style="text-align:  center;">&copy; 2017-2018</small>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+<!-- system modal start -->
+    <div id="ycf-alert" class="modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          </div>
+          <div class="modal-body">
+          	<form id="nasCountFrom">
+			  <div class="form-group">
+			    <input type="email" class="form-control" id="nasCount" placeholder="Enter Nas Count">
+			  </div>
+			</form>
+            <p>[Message]</p>
+          </div>
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- system modal end -->
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery.slim.min.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script>
+    <script src="js/nebPay.min.js"></script>
+	<script src="js/nebulas.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/flipclock.js"></script>
+    <script type="text/javascript">
+    	var tableData;
+    	
+    	$(document).ready(function(){
+    		
+    		clock = new FlipClock($('.clock'), 60, {
+				clockFace: 'Counter'
+			});
+    		
+    		if(typeof(webExtensionWallet) === "undefined"){
+    			$('#noHavePlus').show();
+    			$('#account').hide();
+    		}else{
+    			loadAccount();
+    		}
+    		loadData();
+    		window.setInterval("myCountDown()",1000); 
+    	});
+    	
+    	//加载数据
+    	function loadData(){
+    		Refresh(Account.NewAccount().getAddressString(),"getTableArrInfo",[],function(data){
+    			tableData=data;
+    			for(var i=0;i<data.length;i++){
+    				$('#owner'+i).html("Owner : "+showOwner(data[i]));
+    				$('#cash'+i).html(showCash(data[i]));
+    				$('#need'+i).html(showNeed(data[i]));
+    				if(data[i].ownerAddress==undefined||data[i].ownerAddress==''){
+    					$('#playBtn'+(i+1)).html('Look');
+    				}else{
+    					$('#playBtn'+(i+1)).html('Play');    					
+    				}
+    				if(myaccount==data[i].ownerAddress){
+    					$('#playBtn'+(i+1)).html('Look');
+    					$('#buyBtn'+(i+1)).hide();
+    					$('#addCashBtn'+(i+1)).show();
+    					$('#subCashBtn'+(i+1)).show();
+    				}else{
+    					$('#buyBtn'+(i+1)).show();
+    					$('#addCashBtn'+(i+1)).hide();
+    					$('#subCashBtn'+(i+1)).hide();
+    					
+    				}
+    			}
+    		});
+	    	loadMsg(0);
+    	}
+    	function showNeed(data){
+    		if(data.ownerAddress==undefined||data.ownerAddress==''){
+    			return 'This table has no owner. <br/>So you can\'t play at this table. <br/>You can buy this table become banker for '+data.cash+' Nas.';
+    		}else{
+    			return 'You can play at this table and win up to '+data.cash+'Nas. <br/>You can buy this table become banker for '+data.cash*1.5+'('+data.cash+'x1.5) Nas.';
+    		}
+    	}
+    	function showCash(data){
+    		if(data.ownerAddress==undefined||data.ownerAddress==''){
+    			return 0;
+    		}else{
+    			return data.cash;
+    		}
+    	}
+    	function showOwner(data){
+    		if(data.ownerAddress==undefined){
+    			return "None";
+    		}else if (data.ownerAddress==''){
+    			return "None";    			
+    		}else{
+    			if(myaccount==data.ownerAddress){
+    				return data.ownerAddress+' <font color="red">(Belong to you)</font>';
+    			}else{
+	    			return data.ownerAddress;
+    			}
+    		}
+    	}
+    	function getTableCash(index){
+    		var data=tableData[index-1];
+    		if(data.ownerAddress==undefined||data.ownerAddress==''){
+    			return data.cash;
+    		}else{
+    			return data.cash*1.5;
+    		}
+    	}
+    	function play(index){
+    		window.location.href = "table.html#"+index;
+    	}
+    	//买桌子
+    	function buy(index){
+    		Modal.confirm(
+    				  {title:'Buy table',isShowNasCount:false,msg: 'Are you sure you want to buy this table for '+getTableCash(index)+' Nas?'})
+    				  .on( function (e) {
+    				    if(e==true){
+    				    	serialNumber = nebPay.call(dappAddress, getTableCash(index), "buyTable", JSON.stringify([index]), {
+    		    	            qrcode: {
+    		    	                showQRCode: true
+    		    	            },
+    		    	            callback:callbackUrl
+    		    	        });
+    		    			
+    		    			//设置定时查询交易结果
+    		    	        intervalQuery = setInterval(function() {
+    		    	            funcIntervalQuery(function(){
+    		    	            	loadData();
+    		    	            });
+    		    	        }, 5000);
+    				    }
+    				  });
+    	}
+    	//减少现金
+    	function subCash(index){
+    		Modal.confirm(
+  				  {title:'SubCash',isShowNasCount:true,msg: 'Are you sure you want to sub cash to your table?'})
+  				  .on( function (e) {
+  				    if(e==true){
+  				    	var cashCount=$('#nasCount').val();
+  				    	if(isNaN(cashCount)){
+  			    			alert('Please fill in the amount correctly.');
+  			    			return;
+  			    		}
+  			    		if(cashCount<0.0001){
+  			    			alert('The amount should be more than 0.0001 Nas!');
+  			    			return;
+  			    		}
+  			    		if(cashCount>1000000000000){
+  			    			alert('The amount should be less than 1000000000000 Nas!');
+  			    			return;
+  			    		}
+  				    	serialNumber = nebPay.call(dappAddress, 0, "subCashToTable", JSON.stringify([index,cashCount]), {
+  				            qrcode: {
+  				                showQRCode: true
+  				            },
+  				            callback:callbackUrl
+  				        });
+  						
+  						//设置定时查询交易结果
+  				        intervalQuery = setInterval(function() {
+  				            funcIntervalQuery(function(){
+  				            	loadData();
+  				            });
+  				        }, 5000);
+  				    }
+  				  });
+    		
+    	}
+    	//增加现金
+    	function addCash(index){
+    		Modal.confirm(
+  				  {title:'AddCash',isShowNasCount:true,msg: 'Are you sure you want to add cash to your table?'})
+  				  .on( function (e) {
+  				    if(e==true){
+  				    	var cashCount=$('#nasCount').val();
+  				    	if(isNaN(cashCount)){
+  			    			alert('Please fill in the amount correctly.');
+  			    			return;
+  			    		}
+  			    		if(cashCount<0.0001){
+  			    			alert('The amount should be more than 0.0001 Nas!');
+  			    			return;
+  			    		}
+  			    		if(cashCount>1000000000000){
+  			    			alert('The amount should be less than 1000000000000 Nas!');
+  			    			return;
+  			    		}
+  				    	serialNumber = nebPay.call(dappAddress, cashCount, "addCashToTable", JSON.stringify([index]), {
+  				            qrcode: {
+  				                showQRCode: true
+  				            },
+  				            callback:callbackUrl
+  				        });
+  						
+  						//设置定时查询交易结果
+  				        intervalQuery = setInterval(function() {
+  				            funcIntervalQuery(function(){
+  				            	loadData();
+  				            });
+  				        }, 5000);
+  				    }
+  				  });
+    		
+    	}
+    </script>
+    
+    
+  </body>
+</html>

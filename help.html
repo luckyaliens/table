@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-cmn">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/flipclock.css">
+    <link rel="stylesheet" href="bootstrap.min.css" >
+    <link rel="stylesheet" href="loaders.min.css" >
+    <link rel="stylesheet" href="css/index.css" >
+	<link rel="shortcut icon" href="img/index/logo.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/index/logo.png">
+    <title>LuckTable</title>
+    <style type="text/css">
+    	p img{
+			width: 30px;
+		}
+		#message p{
+			border-bottom: 1px solid #d5d9dc;
+			padding-bottom:20px;
+		}
+    </style>
+  </head>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">LuckTable<span id="accountSpan"></span></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark " href="index.html">Home</a>
+        <a class="p-2 text-dark alert alert-secondary" href="help.html">Help</a>
+      </nav>
+    </div>
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h3 class="display-4">Game rules</h3>
+      <p class="lead" style="color: red;"><strong>Warning ! ! ! Don't indulge, you may lose everything.</strong></p>
+      <p class="lead" style="text-align: left;">1.There are three tables in all.</p>
+      <p class="lead" style="text-align: left;">2.You can buy a table without a master for 1 Nas.(1 Nas will be the balance on the table).Or buy a table for someone else to pay 1.5 times the price.(The balance on the table remains unchanged).</p>
+      <p class="lead" style="text-align: left;">3.If someone buys your table, you will get 1.5 times the balance on the table.</p>
+      <p class="lead" style="text-align: left;">4.You can increase or reduce the balance of your own table.(The balance on the table can not be less than 1 Nas.)</p>
+      <p class="lead" style="text-align: left;">5.You can play on someone's desk.</p>
+      <p class="lead" style="text-align: left;">6.According to odds, the maximum amount won is no more than the balance on the table.</p>
+      <p class="lead" style="text-align: left;">7.The money lost by playing games will be increased to the balance on the table, and the owner of the table can be extracted at any time.</p>
+      
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center" id="dataDiv">
+      	<div class="col-md-12" style="margin-bottom:20px;">
+      	</div>
+      		<br/>
+      		<br/>
+      </div>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mb-3 text-muted" style="text-align:  center;">&copy; 2017-2018</small>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+<!-- system modal start -->
+    <div id="ycf-alert" class="modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          </div>
+          <div class="modal-body">
+          	<form id="nasCountFrom">
+			  <div class="form-group">
+			    <input type="email" class="form-control" id="nasCount" placeholder="Enter Nas Count">
+			  </div>
+			</form>
+            <p>[Message]</p>
+          </div>
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- system modal end -->
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery.slim.min.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script>
+    <script src="js/nebPay.min.js"></script>
+	<script src="js/nebulas.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/flipclock.js"></script>
+    <script type="text/javascript">
+    	var tableData;
+    	
+    	$(document).ready(function(){
+    		
+    	});
+    	
+    </script>
+    
+    
+  </body>
+</html>
