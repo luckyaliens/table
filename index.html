@@ -222,7 +222,7 @@
     		if(data.ownerAddress==undefined||data.ownerAddress==''){
     			return 'This table has no owner. <br/>So you can\'t play at this table. <br/>You can buy this table become banker for '+data.cash+' Nas.';
     		}else{
-    			return 'You can play at this table and win up to '+data.cash+'Nas. <br/>You can buy this table become banker for '+data.cash*10000000*1.5/10000000+'('+data.cash+'x1.5) Nas.';
+    			return 'You can play at this table and win up to '+data.cash+'Nas. <br/>You can buy this table become banker for '+mul(data.cash,1.5)+'('+data.cash+'x1.5) Nas.';
     		}
     	}
     	function showCash(data){
@@ -250,7 +250,7 @@
     		if(data.ownerAddress==undefined||data.ownerAddress==''){
     			return data.cash;
     		}else{
-    			return data.cash*10000000*1.5/10000000;
+    			return mul( data.cash,1.5);
     		}
     	}
     	function play(index){
@@ -350,6 +350,18 @@
   				  });
     		
     	}
+	    function mul(a, b) {
+    var c = 0,
+        d = a.toString(),
+        e = b.toString();
+    try {
+        c += d.split(".")[1].length;
+    } catch (f) {}
+    try {
+        c += e.split(".")[1].length;
+    } catch (f) {}
+    return Number(d.replace(".", "")) * Number(e.replace(".", "")) / Math.pow(10, c);
+}
     </script>
     
     
