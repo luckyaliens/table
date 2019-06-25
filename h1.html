@@ -63,7 +63,7 @@ function c(){
 }
 function auto(){
 	if(isAuto==true){
-		setTimeout(function(){ a();auto(); }, document.getElementById("t").value);
+		setInterval(function(){ a();auto(); }, document.getElementById("t").value);
 	}
 }
 </script>
