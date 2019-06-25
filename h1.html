@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<audio id="bgMusic1">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic2">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic3">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic4">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic5">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic6">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic7">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic8">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic9">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+<audio id="bgMusic10">
+    <source src="1.mp3" type="audio/mp3">
+</audio>
+
+<input type="button"  onclick="a()" value="点击" style="width: 100px;height: 100px;"><br/><br/>
+<input type="button"  onclick="b()" value="自动" style="width: 100px;height: 100px;"><br/><br/>
+<input type="button"  onclick="c()" value="停止" style="width: 100px;height: 100px;"><br/><br/>
+
+<input type="text" value="6" id="t" name="t">
+
+</body>
+<script type="text/javascript">
+var isAuto=false;
+function a(){
+	for(var i=1;i<=10;i++){
+		var audio = document.getElementById("bgMusic"+i);
+		if(audio.currentTime==0||audio.ended){
+			audio.play();
+			return;
+		}
+	}
+}
+function b(){
+	isAuto=true;
+	auto();
+}
+function c(){
+	isAuto=false;
+}
+function auto(){
+	if(isAuto==true){
+		setTimeout(function(){ a();auto(); }, 1000/document.getElementById("t").value);
+	}
+}
+</script>
+</html>
