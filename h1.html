@@ -40,7 +40,7 @@
 <input type="button"  onclick="b()" value="自动" style="width: 100px;height: 100px;"><br/><br/>
 <input type="button"  onclick="c()" value="停止" style="width: 100px;height: 100px;"><br/><br/>
 
-<input type="text" value="6" id="t" name="t">
+<input type="text" value="160" id="t" name="t">
 
 </body>
 <script type="text/javascript">
@@ -63,7 +63,7 @@ function c(){
 }
 function auto(){
 	if(isAuto==true){
-		setTimeout(function(){ a();auto(); }, 1000/document.getElementById("t").value);
+		setTimeout(function(){ a();auto(); }, document.getElementById("t").value);
 	}
 }
 </script>
